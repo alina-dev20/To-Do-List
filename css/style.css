@@ -1,0 +1,101 @@
+/* Сброс стандартных отступов и рамок */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+/* Стили для шапки To Do List */
+#header {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 75px;
+    min-height: 30vh;
+    width: 100%;
+}
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Work Sans', sans-serif;
+    min-height: 100vh;
+    padding-top: 3%;
+    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    color: #333;
+}
+/* Контейнер для задач */
+#todo-container {
+   
+}
+/* Стили для поля ввода и кнопки */
+#todo-form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#todo-form input[type="text"] {
+    width: 100%;  /* Растягивает поле на всю доступную ширину */
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 25px;  /* Сделаем края поля ввода круглыми */
+    box-sizing: border-box;  /* Включаем padding и border в общую ширину */
+    margin-right: 5px;  /* Отступ справа для кнопки */
+}
+
+#input-button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#input-button:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для списка задач */
+#list-container {
+    list-style-type: none;
+    padding: 0;
+}
+
+#list-container li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin: 5px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#list-container li.completed {
+    text-decoration: line-through;
+    background-color: #e0ffe0;
+}
+
+/* Стили для счетчика */
+.counter-container {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+#task-counter {
+    text-align: center;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+    border: 1px solid gray;
+  }
