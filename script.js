@@ -63,9 +63,8 @@ function updateCounters() {
     uncompletedCounter.textContent = uncompleted;
 }
 
-// Функция добавления задачи
-function addTask() {
-    const taskText = inputField.value.trim();
+// Функция добавления задачи (task-list)
+function addTask(taskText) {
     if (taskText === '') return;
 
     // Создание элементов
@@ -73,7 +72,6 @@ function addTask() {
     const checkbox = document.createElement('input');
     const span = document.createElement('span');
     const editButton = document.createElement('button');
-    
     const deleteButton = document.createElement('button'); 
 
     checkbox.type = 'checkbox';
@@ -142,11 +140,17 @@ function addTask() {
     listItem.appendChild(deleteButton);
     listContainer.appendChild(listItem);
 
-    inputField.value = '';
     updateCounters();
 }
+// Пример добавление задачи (task-list)
+addTask("Купить молоко");
+addTask("Позвонить маме");
 
-// Пример добавления задачи
+// Слушатель для добавления новой задачи
 addButton.addEventListener('click', () => {
-    addTask();
+    const taskText = inputField.value.trim();
+    if (taskText !== '') {
+        addTask(taskText);
+    }
+    inputField.value = ''; // Очистить поле ввода
 });
