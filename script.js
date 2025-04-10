@@ -73,7 +73,6 @@ function addTask() {
     const checkbox = document.createElement('input');
     const span = document.createElement('span');
     const editButton = document.createElement('button');
-    
     const deleteButton = document.createElement('button'); 
 
     checkbox.type = 'checkbox';
@@ -147,6 +146,19 @@ function addTask() {
 }
 
 // Пример добавления задачи
+// addButton.addEventListener('click', () => {
+//     addTask();
+// });
+
+// Пример добавление задачи
+addTask("Купить молоко");
+addTask("Позвонить маме");
+
+// Слушатель для добавления новой задачи
 addButton.addEventListener('click', () => {
-    addTask();
+    const taskText = inputField.value.trim();
+    if (taskText !== '') {
+        addTask(taskText);
+    }
+    inputField.value = ''; // Очистить поле ввода
 });
