@@ -63,9 +63,8 @@ function updateCounters() {
     uncompletedCounter.textContent = uncompleted;
 }
 
-// Функция добавления задачи
-function addTask() {
-    const taskText = inputField.value.trim();
+// Функция добавления задачи (task-list)
+function addTask(taskText) {
     if (taskText === '') return;
 
     // Создание элементов
@@ -141,16 +140,9 @@ function addTask() {
     listItem.appendChild(deleteButton);
     listContainer.appendChild(listItem);
 
-    inputField.value = '';
     updateCounters();
 }
-
-// Пример добавления задачи
-// addButton.addEventListener('click', () => {
-//     addTask();
-// });
-
-// Пример добавление задачи
+// Пример добавление задачи (task-list)
 addTask("Купить молоко");
 addTask("Позвонить маме");
 
