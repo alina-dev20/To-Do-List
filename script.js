@@ -5,6 +5,45 @@ const listContainer = document.getElementById('list-container');
 const completedCounter = document.getElementById('completed-counter');
 const uncompletedCounter = document.getElementById('uncompleted-counter');
 
+// Модальное окно для редактирования
+const modal = document.createElement('div');
+const modalContent = document.createElement('div');
+const modalInput = document.createElement('input');
+const modalSaveButton = document.createElement('button');
+const modalCloseButton = document.createElement('button');
+
+// Стиль для модального окна
+modal.style.display = 'none';
+modal.style.position = 'fixed';
+modal.style.top = '0';
+modal.style.left = '0';
+modal.style.width = '100%';
+modal.style.height = '100%';
+modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+modal.style.justifyContent = 'center';
+modal.style.alignItems = 'center';
+modal.style.zIndex = '9999';
+
+modalContent.style.backgroundColor = 'white';
+modalContent.style.padding = '20px';
+modalContent.style.borderRadius = '5px';
+modalContent.style.textAlign = 'center';
+
+modalInput.style.width = '100%';
+modalInput.style.padding = '10px';
+modalInput.style.marginBottom = '10px';
+
+modalSaveButton.textContent = 'Save';
+modalSaveButton.style.marginRight = '10px';
+modalCloseButton.textContent = 'Close';
+
+// Добавляем элементы в модальное окно
+modalContent.appendChild(modalInput);
+modalContent.appendChild(modalSaveButton);
+modalContent.appendChild(modalCloseButton);
+modal.appendChild(modalContent);
+document.body.appendChild(modal);
+
 // Функция обновления счётчиков
 function updateCounters() {
     const tasks = document.querySelectorAll('#list-container li');
@@ -72,14 +111,24 @@ function addTask() {
 
     // Событие для кнопки "Edit" (редактировать задачу)
     editButton.addEventListener('click', () => {
-        const newText = prompt('Edit task:', span.textContent);
-        if (newText !== null && newText.trim() !== '') {
-            span.textContent = newText.trim();
-            updateCounters();
-        }
+        modal.style.display = 'flex'; // Открыть модальное окно
+        modalInput.value = span.textContent; // Заполняем поле текущим текстом задачи
+
+        modalSaveButton.addEventListener('click', () => {
+            const newText = modalInput.value.trim();
+            if (newText !== '') {
+                span.textContent = newText;
+                modal.style.display = 'none'; // Закрываем модальное окно
+                updateCounters();
+            }
+        });
+
+        modalCloseButton.addEventListener('click', () => {
+            modal.style.display = 'none'; // Закрыть модальное окно без изменений
+        });
     });
 
-    // Событие для кнопки "Delete" (удалить задачу)
+    // Событие для кнопки Delete (удалить задачу)
     deleteButton.addEventListener('click', () => {
         listContainer.removeChild(listItem);
         updateCounters();
@@ -95,3 +144,8 @@ function addTask() {
     inputField.value = '';
     updateCounters();
 }
+
+// Пример добавления задачи
+addButton.addEventListener('click', () => {
+    addTask();
+});

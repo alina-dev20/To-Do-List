@@ -25,10 +25,7 @@ body {
     background: linear-gradient(135deg, #89f7fe, #66a6ff);
     color: #333;
 }
-/* Контейнер для задач */
-#todo-container {
-   
-}
+
 /* Стили для поля ввода и кнопки */
 #todo-form {
     display: flex;
