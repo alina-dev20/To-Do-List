@@ -73,7 +73,8 @@ function addTask() {
     const checkbox = document.createElement('input');
     const span = document.createElement('span');
     const editButton = document.createElement('button');
-    const deleteButton = document.createElement('button');
+    
+    const deleteButton = document.createElement('button'); 
 
     checkbox.type = 'checkbox';
     span.textContent = taskText;
