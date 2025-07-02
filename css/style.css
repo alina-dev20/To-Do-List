@@ -3,8 +3,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
+
 /* Стили для шапки To Do List */
 #header {
     align-items: center;
@@ -15,6 +15,14 @@
     min-height: 30vh;
     width: 100%;
 }
+.heading h1 {
+    color: rgb(6, 5, 5);  
+    font-family: 'Great Vibes', cursive;
+    font-size: 125px; 
+    text-align: center; 
+    text-shadow: 1px 1px 3px rgba(241, 229, 229, 0.6);
+}
+
 body {
     align-items: center;
     display: flex;
@@ -22,10 +30,25 @@ body {
     font-family: 'Work Sans', sans-serif;
     min-height: 100vh;
     padding-top: 3%;
-    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    background: #2c3e50; /* Тёмно-синий фон */
+    color: white;
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    background-size: 200% 200%;  /* Увеличиваем размер фона для анимации */
+    padding: 20px;
+    border-radius: 10px;
+    animation: moveStars 30s linear infinite;  /* Анимация движения фона */
     color: #333;
 }
 
+/* Определяем анимацию движения звезд */
+@keyframes moveStars {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
 /* Стили для поля ввода и кнопки */
 #todo-form {
     display: flex;
@@ -34,28 +57,87 @@ body {
 }
 
 #todo-form input[type="text"] {
-    width: 100%;  /* Растягивает поле на всю доступную ширину */
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 25px;  /* Сделаем края поля ввода круглыми */
-    box-sizing: border-box;  /* Включаем padding и border в общую ширину */
-    margin-right: 5px;  /* Отступ справа для кнопки */
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    box-sizing: border-box;
+    margin-right: 5px;
+    backdrop-filter: blur(5px);
+    font-style: italic;
+    transition: background 0.3s ease;    
+}
+/* Стили для текста в placeholder (текст подсказки) */
+#todo-form input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.667);  /* Белый цвет для текста в placeholder */
 }
 
+#todo-form input[type="text"]:focus {
+    background: rgba(255, 255, 255, 0.4);  /* Слегка меняется фон при фокусе */
+    outline: none;  /* Убираем стандартное выделение */
+    border-color: rgba(255, 255, 255, 1);  /* Белая граница при фокусе */
+}
+
+/* Стили для кнопки */
 #input-button {
-    padding: 10px 15px;
-    font-size: 1rem;
-    background-color: #007BFF;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    background-color: #8a2be2; 
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;  
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;  
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);  /* Легкая тень для кнопки */
+    background-image: linear-gradient(135deg, rgba(75, 0, 130, 0.8), rgba(85, 107, 47, 0.8)); /* Градиент в космическом стиле */
+    background-size: 200% 200%; /* Для более интересного визуального эффекта */
 }
 
+/* Анимация для кнопки */
 #input-button:hover {
-    background-color: #0056b3;
+    background-color: #4b0082;
+    transform: scale(1.1);  /* Увеличиваем кнопку при наведении */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);  /* Увеличиваем тень */
+    background-position: 100% 100%;  /* Эффект движения градиента */
+}
+
+/* Для анимации фона кнопки */
+@keyframes cosmicAnimation {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+#input-button {
+    animation: cosmicAnimation 5s infinite linear;  /* Анимация движения градиента */
+}
+input[type="checkbox"] {
+    accent-color: #8a2be2;  
+}
+
+.nav-cap a {
+    color: white;
+    text-decoration: none;  /* Убираем подчеркивание */
+    padding: 10px;
+    transition: color 0.3s ease;  /* Плавное изменение цвета */
+    font-size: 35px;
+    border-radius: 5px;
+    background: transparent;
+    text-shadow: 2px 2px 4px rgba(15, 15, 15, 0.961);
+    font-family: 'Roboto Slab', serif; 
+}
+
+.nav-cap a:hover {
+    color: #8a2be2; 
+    transition: color 0.5s ease; 
 }
 
 /* Стили для списка задач */
@@ -65,34 +147,49 @@ body {
 }
 
 #list-container li {
-    background-color: #f9f9f9;
+    background: rgba(255, 255, 255, 0.106); /* Прозрачный черный фон */
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(21, 3, 3, 0.248); /* Легкая белая граница */
     margin: 5px 0;
-    border-radius: 5px;
+    border-radius: 10px;  /* Сглаженные углы */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: black; 
+    font-weight: 250;
+    font-family: 'Roboto Slab', serif;  
+    font-size: 30px; 
+    transition: background-color 0.3s ease;  /* Плавное изменение фона */
 }
 
-#list-container li.completed {
+.completed {
     text-decoration: line-through;
-    background-color: #e0ffe0;
+    color: rgba(128, 128, 128, 0.229);
+    border: 1px solid gray;
 }
 
+
+h2 {
+    font-size: 2.4rem;  /* Размер шрифта */
+    font-weight: 800;  /* Жирный шрифт */
+    color: black;  /* Белый цвет текста */
+    font-family: 'Roboto Slab', serif;  /* Используем тот же шрифт */
+    text-align: center;  /* Выравнивание по центру */
+    text-shadow: 1px 1px 3px rgba(241, 229, 229, 0.6);  /* Легкая тень для текста */
+    margin-bottom: 20px;  /* Отступ снизу */
+}
 /* Стили для счетчика */
 .counter-container {
     margin-top: 20px;
-    font-size: 1.2rem;
-    color: #333;
+    font-size: 1.5rem;  
+    font-weight: 700;  /* Жирный шрифт */
+    color: white;  
+    font-family: 'Roboto Slab', serif;  
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);  /* Легкая тень для текста */
 }
 
 #task-counter {
     text-align: center;
 }
 
-.completed {
-    text-decoration: line-through;
-    color: gray;
-    border: 1px solid gray;
-  }
+

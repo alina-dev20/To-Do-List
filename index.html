@@ -5,34 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
+  <!-- Подключение шрифта Great Vibes -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <!-- Google Font: Quick Sand -->
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Создадим контейнер для to do list -->
+
     <div id="todo-container">
-        <!-- Шапка to do list -->
+
         <div id="header">
-            <h1>To Do List</h1>
+            <div class="nav-cap">
+                <a href="">Главная</a>
+                <a href="">Дни недели</a>
+                <a href="">Обо мне</a>
+                <a href="">О делах</a>
+            </div>
+            <div class="heading">
+                <h1>Список дел</h1>
+            </div>
         </div>
-        <!-- Создадим поле input и кнопку внутри #todo-form -->
+
+        
+  
         <div id="todo-form">
-            <input type="text" placeholder="Add Task">
-            <button id="input-button" onclick="addTask()">Add</button>
+            <input type="text" placeholder="Задать новое дело">
+            <button id="input-button" onclick="addTask()">Добавить</button>
         </div>
     </div>
-    
-   <!-- Лист задач -->
-   <h2>Task List</h2>
+
+   <h2>Перечень задач</h2>
    <ul id="list-container"></ul>
     
-   <!-- Счетчик -->
+
    <hr/>
    <div class="counter-container">
     <div id="task-counter">
-        Completed: <span id="completed-counter">0</span> | Uncompleted: <span id="uncompleted-counter">0</span>
+        Выполнено: <span id="completed-counter">0</span> | Невыполнено: <span id="uncompleted-counter">0</span>
     </div>
    </div>
 
