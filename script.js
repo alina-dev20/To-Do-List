@@ -1,10 +1,10 @@
 // Получаем элементы DOM 
-const inputField = document.querySelector('#todo-form input[type="text"]'); // inputField: это поле ввода для добавления задачи.
-const addButton = document.getElementById('input-button'); // addButton: кнопка для добавления новой задачи
-const listContainer = document.getElementById('list-container'); // listContainer: контейнер для списка задач.
-const completedCounter = document.getElementById('completed-counter'); // completedCounter и uncompletedCounter: элементы для отображения количества выполненных и невыполненных задач.
+const inputField = document.querySelector('#todo-form input[type="text"]'); 
+const addButton = document.getElementById('input-button');
+const listContainer = document.getElementById('list-container');
+const completedCounter = document.getElementById('completed-counter');
 const uncompletedCounter = document.getElementById('uncompleted-counter');
-const categoryFilter = document.getElementById('category-filter'); // Фильтр по категориям
+const categoryFilter = document.getElementById('category-filter');
 
 // Модальное окно для редактирования
 const modal = document.createElement('div'); 
@@ -119,6 +119,9 @@ function addTask() {
     
     tagsSpan.textContent = `Теги: ${tags.join(', ')}`;
     tagsSpan.style.marginLeft = '10px';
+
+    // Добавляем класс для категории
+    categorySpan.classList.add('category');
 
     // Кнопка "Edit" (карандаш)
     editButton.innerHTML = '<i class="fas fa-pencil-alt"></i>';
