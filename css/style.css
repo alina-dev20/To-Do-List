@@ -70,6 +70,10 @@ body {
     font-style: italic;
     transition: background 0.3s ease;    
 }
+/* Стили для текста в placeholder (текст подсказки) */
+#todo-form input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.667);  /* Белый цвет для текста в placeholder */
+}
 
 #todo-form input[type="text"]:focus {
     background: rgba(255, 255, 255, 0.4);  /* Слегка меняется фон при фокусе */
