@@ -4,6 +4,7 @@ const addButton = document.getElementById('input-button'); //addButton: кноп
 const listContainer = document.getElementById('list-container'); //listContainer: контейнер для списка задач.
 const completedCounter = document.getElementById('completed-counter'); //completedCounter и uncompletedCounter: элементы для отображения количества выполненных и невыполненных задач.
 const uncompletedCounter = document.getElementById('uncompleted-counter');
+const filterButton = document.getElementById('filter-priority'); // Кнопка для фильтрации по приоритету
 
 // Модальное окно для редактирования
 const modal = document.createElement('div'); //modal: это само модальное окно, которое будет отображаться поверх страницы.
@@ -79,29 +80,28 @@ modalContent.appendChild(modalCloseButton);
 modal.appendChild(modalContent);
 document.body.appendChild(modal);
 
+// Массив для хранения задач
+let tasks = [];
+
 // Функция обновления счётчиков
 function updateCounters() {
-    const tasks = document.querySelectorAll('#list-container li');
-    let completed = 0;
-    let uncompleted = 0;
-
-    tasks.forEach(task => {
-        const checkbox = task.querySelector('input[type="checkbox"]');
-        if (checkbox.checked) {
-            completed++;
-        } else {
-            uncompleted++;
-        }
-    });
-
+    const completed = tasks.filter(task => task.completed).length;
+    const uncompleted = tasks.length - completed;
+    
     completedCounter.textContent = completed;
     uncompletedCounter.textContent = uncompleted;
 }
 
 // Функция добавления задачи
-function addTask() {
+function addTask(priority = 'Medium') {
     const taskText = inputField.value.trim();
     if (taskText === '') return;
+
+    const task = {
+        text: taskText,
+        priority: priority,
+        completed: false
+    };
 
     // Создание элементов
     const listItem = document.createElement('li');
@@ -114,6 +114,10 @@ function addTask() {
     checkbox.type = 'checkbox';
     span.textContent = taskText;
     span.style.marginLeft = '10px';
+
+    // Добавляем приоритет
+    listItem.classList.add(priority.toLowerCase());  // Добавляем класс для приоритета
+    listItem.dataset.priority = priority;
 
     // Кнопка "Edit" (карандаш)
     editButton.innerHTML = '<i class="fas fa-pencil-alt"></i>';
@@ -134,7 +138,8 @@ function addTask() {
     deleteButton.style.borderRadius = '5px';
 
     // Событие при смене состояния чекбокса
-    checkbox.addEventListener('change', () => {
+     checkbox.addEventListener('change', () => {
+        task.completed = checkbox.checked;
         if (checkbox.checked) {
             span.style.textDecoration = 'line-through';
             span.style.color = 'gray';
@@ -177,11 +182,45 @@ function addTask() {
     listItem.appendChild(deleteButton);
     listContainer.appendChild(listItem);
 
-    inputField.value = '';
+    tasks.push(task);  // Добавляем задачу в массив
     updateCounters();
 }
 
-// Пример добавления задачи
+// Сортировка задач по приоритету
+function sortTasksByPriority() {
+    const sortedTasks = [...tasks].sort((a, b) => {
+        const priorities = ['High', 'Medium', 'Low'];
+        return priorities.indexOf(b.priority) - priorities.indexOf(a.priority);
+    });
+
+    listContainer.innerHTML = ''; // Очищаем текущий список
+
+    sortedTasks.forEach(task => addTask(task.priority));  // Добавляем задачи в отсортированном порядке
+}
+// Фильтрация задач по приоритету
+function filterHighPriorityTasks() {
+    const highPriorityTasks = tasks.filter(task => task.priority === 'High');
+    listContainer.innerHTML = ''; // Очищаем текущий список
+
+    highPriorityTasks.forEach(task => addTask(task.priority));  // Добавляем только высокоприоритетные задачи
+}
+
+// Слушатель для добавления новой задачи
 addButton.addEventListener('click', () => {
-    addTask();
+    const taskText = inputField.value.trim();
+    if (taskText !== '') {
+        const priority = document.querySelector('input[name="priority"]:checked')?.value || 'Medium';  // Получаем выбранный приоритет
+        addTask(priority);
+    }
+    inputField.value = ''; // Очистить поле ввода
 });
+
+// Пример добавления задач
+addTask("Купить молоко", "High");
+addTask("Позвонить маме", "Low");
+
+// Слушатель для фильтрации по высокому приоритету
+filterButton.addEventListener('click', filterHighPriorityTasks);
+
+// Пример сортировки задач по приоритету
+sortTasksByPriority();
