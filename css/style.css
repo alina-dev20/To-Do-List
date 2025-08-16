@@ -192,4 +192,115 @@ h2 {
     text-align: center;
 }
 
+/* ===== Mobile first: контейнеры, безопасные зоны, читаемость ===== */
+:root {
+    --maxw: 720px;
+  }
+  
+  body {
+    
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-top: max(16px, env(safe-area-inset-top));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    color: #fff; /* на тёмном фоне текст должен быть светлым */
+  }
+  
 
+  #header,
+  #todo-form,
+  #list-container,
+  .counter-container,
+  .nav-cap {
+    width: min(100%, var(--maxw));
+    margin-inline: auto;
+  }
+  
+
+  .heading h1 {
+    font-size: clamp(36px, 12vw, 125px);
+  }
+  
+
+  #header {
+    min-height: auto;
+    gap: 12px;
+    font-size: clamp(24px, 6.5vw, 75px);
+  }
+  
+
+  #todo-form {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  #todo-form input[type="text"] {
+    flex: 1 1 100%;
+    font-size: 16px;              
+    padding: 14px 16px;
+    margin-right: 0;
+  }
+  
+  #input-button {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 16px;
+    min-height: 44px;         
+  }
+  
+  @media (min-width: 600px) {
+    #todo-form { flex-wrap: nowrap; }
+    #todo-form input[type="text"] { flex: 1 1 auto; }
+    #input-button { width: auto; }
+  }
+  
+  #list-container { 
+    list-style: none; 
+    padding: 0; 
+    margin-top: 10px;
+  }
+  
+  #list-container li {
+    font-size: clamp(16px, 4.5vw, 22px);
+    padding: 14px;
+    gap: 10px;
+    min-height: 48px;             
+    backdrop-filter: blur(3px);
+  }
+  
+  #list-container input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+  }
+  
+
+  .nav-cap a {
+    font-size: clamp(18px, 5vw, 28px);
+    text-shadow: 1px 1px 2px rgba(0,0,0,.6);
+  }
+
+  #task-counter, .counter-container { 
+    text-align: center; 
+    font-size: clamp(16px, 4.5vw, 20px);
+  }
+  
+
+  :focus-visible {
+    outline: 3px solid #8a2be2;
+    outline-offset: 2px;
+  }
+  
+  #list-container li.completed {
+    color: rgba(255,255,255,0.35);
+    border-color: rgba(255,255,255,0.35);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+  
+  
+  @media (pointer: coarse) {
+    #input-button:hover { transform: none; }
+  }
+  
